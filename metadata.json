@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Remix: Solar Tek Energy Texas",
+  "description": "High-performance solar systems in Texas. Specializing in solar pool heating and cooling, home solar installation, maintenance, and diagnostics with an interactive energy assessment tool and AI lead bot.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

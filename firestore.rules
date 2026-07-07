@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper to check if user is the authorized admin
+    function isAdmin() {
+      return request.auth != null 
+        && request.auth.token.email_verified == true 
+        && request.auth.token.email.lower() == "trishmarie002@gmail.com";
+    }
+
+    // Leads collection rules
+    match /leads/{leadId} {
+      // Anyone can submit/create a lead
+      allow create: if true;
+      // Only authorized admin can read, update, or delete leads
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Settings collection rules (images configuration, maintenance status, etc.)
+    match /settings/{settingId} {
+      // Anyone can read configuration settings (maintenance status, images config)
+      allow read: if true;
+      // Only authorized admin can edit settings
+      allow write: if isAdmin();
+    }
+  }
+}
